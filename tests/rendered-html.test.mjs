@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-test('home renders the eight athletes, navigation, search and correct metadata', async () => {
+test('home renders the eight athletes without tabs, favorites or search', async () => {
   const { default: worker } = await import('../dist/server/index.js');
   const response = await worker.fetch(new Request('http://localhost/', { headers: { accept: 'text/html' } }), { ASSETS: { fetch: async () => new Response('Not found', { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
   assert.equal(response.status, 200);
@@ -11,8 +11,7 @@ test('home renders the eight athletes, navigation, search and correct metadata',
   assert.match(html, /Seguí a EDELP/);
   assert.match(html, /name="viewport"/);
   assert.equal((html.match(/class="athlete-card"/g) || []).length, 8);
-  assert.equal((html.match(/aria-pressed="false"/g) || []).length, 8);
-  assert.match(html, /Buscar por nombre/);
+  assert.doesNotMatch(html, /<nav|<input|aria-pressed|Mis nadadores|Buscar por nombre|Ver quiénes nadan/);
   assert.match(html, /escudo-edlp.webp/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
 });

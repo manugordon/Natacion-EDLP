@@ -16,10 +16,9 @@ npm test
 ## Contenido y comportamiento
 
 - `app/athletes.ts`: datos del equipo y pruebas; campos futuros opcionales sin información inventada.
-- `app/swim-app.tsx`: listado, perfiles, búsqueda sin distinción de acentos, favoritos y navegación por prueba.
+- `app/swim-app.tsx`: listado del equipo y perfiles con sus pruebas.
 - `app/globals.css`: diseño responsive y accesibilidad.
 - `public/escudo-edlp.webp`: escudo provisto por el usuario.
-- Favoritos locales en `edelp-following-v1`; sin cuenta ni backend. Si el navegador bloquea el almacenamiento, funcionan durante la sesión con aviso accesible.
 - Navegación mediante fragmentos de URL, compatible con volver/avanzar y enlaces directos.
 - Las categorías, tiempos, orden y eventos provienen del brief. No se recibió un PDF adicional para contrastarlos.
 
